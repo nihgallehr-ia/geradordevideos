@@ -1,0 +1,33 @@
+name: Construir ViraMix PRO
+on:
+  push:
+    branches: [viramix-pro-build]
+    paths:
+      - ".github/workflows/pro-build.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: viramix-pro-build
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
+      - name: Guardar pacotes de distribuição no ramo comercial
+        run: |
+          rm -rf commercial-output
+          mkdir -p commercial-output
+          cp -R dist/. commercial-output/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add commercial-output
+          git commit -m "Pacote compilado para integração protegida no Cloudflare" || exit 0
+          git push origin viramix-pro-build
