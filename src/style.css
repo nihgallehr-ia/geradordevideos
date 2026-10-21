@@ -47,3 +47,11 @@ footer{margin-top:45px;color:#a395b2}
 header .logo-graphic{display:flex;align-items:center;line-height:1;min-width:0}
 header .logo-graphic img{display:block;width:clamp(145px,14vw,170px);max-width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 2px 5px rgba(150,88,236,.10))}
 @media(max-width:520px){header .logo-graphic img{width:132px}header{gap:9px}}
+
+/* LAB: orientações para geração extensa e downloads por partes */
+.export>div{min-width:0;flex:1 1 auto}
+.large-batch-note{max-width:660px;margin:14px 0 0!important;padding:12px 14px;border:1px solid #9d7bbf;border-radius:11px;background:rgba(30,16,46,.48);color:#f2e2ff!important;font-size:13px;line-height:1.55}
+.zip-hint{font-size:13px;color:#cabbda;line-height:1.5;margin:18px 0 13px}
+.downloads .result{min-width:0;gap:12px;flex-wrap:wrap}
+.downloads .result a{margin-left:auto;white-space:nowrap}
+@media(max-width:520px){.large-batch-note{font-size:12px}.downloads .result a{white-space:normal}}
