@@ -4,6 +4,8 @@ on:
     branches: [viramix-pro-build]
     paths:
       - ".github/workflows/pro-build.yml"
+      - "src/**"
+      - "package.json"
   workflow_dispatch:
 permissions:
   contents: write
