@@ -1,4 +1,5 @@
 import './style.css';
+import { VIRAMIX_BRAND_IMAGE } from './brand-logo.js';
 import { SUPPORT_WHATSAPP_URL } from './support.js';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile, toBlobURL } from '@ffmpeg/util';
@@ -17,7 +18,7 @@ const choice=(n,value)=>Array.from({length:n},(_,i)=>'<option value="'+(i+1)+'" 
 function show(){
  const k=Math.max(1,Math.min(middleCount,groups.middle.length||1));
  const combos=plans(groups,k,ordered,batch,seed);
- root.innerHTML='<header><div class="logo">▶ Vira<span>Mix</span> <small>STUDIO</small></div><div class="pill">✦ Sem créditos de IA</div></header>'+
+ root.innerHTML='<header><div class="logo logo-graphic"><img alt="ViraMix" src="'+VIRAMIX_BRAND_IMAGE+'" width="220" height="74" decoding="async"></div><div class="pill">✦ Sem créditos de IA</div></header>'+
  '<main><div class="support-top"><a href="'+SUPPORT_WHATSAPP_URL+'" target="_blank" rel="noopener noreferrer" aria-label="Falar com o suporte pelo WhatsApp">💬 Precisa de ajuda? Fale com o suporte</a></div><div class="hero"><small>SEU ESTÚDIO DE CRIATIVOS</small><h1>Um conjunto de takes.<br><em>Infinitas ideias.</em></h1><p>Misture clipes já criados no Flow para TikTok Shop, Reels e Shorts. Sem enviar vídeos para um servidor.</p></div>'+
  '<div class="heading"><small>PASSO 1</small><h2>Monte sua biblioteca</h2><p>Adicione vários arquivos em cada categoria.</p></div>'+
  '<section class="grid">'+Object.keys(groups).map((key,i)=>'<article class="card"><div class="number">0'+(i+1)+'</div><h3>'+labels[key]+'</h3><p>'+({hook:'Primeiro trecho do vídeo. Use uma cena que prenda a atenção logo no começo. (Opcional)',middle:'Parte principal do vídeo. Adicione takes mostrando o produto em ação, seus detalhes e benefícios.',cta:'Último trecho do vídeo. Use uma cena de fechamento ou um gesto indicando onde clicar. (Opcional)'}[key])+'</p><label class="upload">＋ Selecionar vídeos<input type="file" data-add="'+key+'" multiple accept="video/*,.mp4,.mov,.webm,.m4v" '+(busy?'disabled':'')+'></label><div class="items">'+(groups[key].length?groups[key].map(item=>'<div class="clip"><video muted playsinline preload="metadata" src="'+esc(item.url)+'"></video><span title="'+esc(item.file.name)+'">'+esc(item.file.name)+'</span><button data-delete="'+item.id+'" '+(busy?'disabled':'')+' aria-label="Excluir clipe">×</button></div>').join(''):'<div class="empty">Nenhum clipe</div>')+'</div><div class="count">'+groups[key].length+' arquivo(s)</div></article>').join('')+'</section>'+
