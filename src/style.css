@@ -45,5 +45,5 @@ footer{margin-top:45px;color:#a395b2}
 
 /* Marca oficial ViraMix no topo: arquivo com transparência incorporado */
 header .logo-graphic{display:flex;align-items:center;line-height:1;min-width:0}
-header .logo-graphic img{display:block;width:clamp(190px,21vw,250px);max-width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 3px 10px rgba(150,88,236,.18))}
-@media(max-width:520px){header .logo-graphic img{width:184px}header{gap:9px}}
+header .logo-graphic img{display:block;width:clamp(145px,14vw,170px);max-width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 2px 5px rgba(150,88,236,.10))}
+@media(max-width:520px){header .logo-graphic img{width:132px}header{gap:9px}}
