@@ -1,0 +1,39 @@
+name: Compilar ViraMix LAB
+on:
+  push:
+    branches: [viramix-lab]
+    paths:
+      - ".github/workflows/lab-build.yml"
+      - "src/**"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.js"
+      - "index.html"
+      - "tests/**"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: viramix-lab
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
+      - name: Guardar compilação do laboratório
+        run: |
+          rm -rf commercial-output
+          mkdir -p commercial-output
+          cp -R dist/. commercial-output/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add commercial-output
+          git commit -m "Compilação LAB para teste isolado" || exit 0
+          git push origin viramix-lab
